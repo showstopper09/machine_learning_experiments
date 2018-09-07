@@ -7,6 +7,7 @@ import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import CountVectorizer
 from sklearn.pipeline import Pipeline,make_pipeline
+from sklearn.model_selection import cross_val_score 
 d=pd.read_csv("YouTube-Spam-Collection-v1/Youtube01-Psy.csv")
 vectorizer=CountVectorizer()
 dvec=vectorizer.fit_transform(d["CONTENT"])
