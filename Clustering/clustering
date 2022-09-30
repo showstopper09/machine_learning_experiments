@@ -1,0 +1,55 @@
+> data<-scale(dataWhiteWine)
+> wine_km<-kmeans(dataWhiteWine,7,nstart=25)
+dataWhiteWine<-read.csv("C:/Users/rahul.thereddevils/Downloads/machine_learning_experiments/winequality-white.csv",header=TRUE,sep=",")
+str(dataWhiteWine)
+wineQualiy<-dataWhiteWine$quality.unique()
+wineQualiy<-dataWhiteWine$quality
+wineQualiy<-unique(dataWhiteWine$quality)
+drop(dataWhiteWine$quality)
+dataWhiteWine <- subset(dataWhiteWine, select = -c(quality))
+ratio_ss <- rep(0, 11)
+wine_km <- rep(0, 11)
+for (k in 1:11) {
+wine_km<-kmeans(dataWhiteWine,k,nstart=20)
+ratio_ss[k]<-wine_km$tot.withinss/wine_km$totss
+}
+plot(ratio_ss, type = "b", xlab = "k")
+> wine_km<-kmeans(data,7,nstart=25)
+> fviz_cluster(wine_km, data = data,ellipse.type = "convex",palette = "jco",ggtheme = theme_minimal())
+> for (k in 1:11) {
++ wine_km<-kmeans(data,k,nstart=25)
++ ratio_ss[k]<-wine_km$tot.withinss/wine_km$totss
++ }
+Warning messages:
+1: did not converge in 10 iterations 
+2: did not converge in 10 iterations 
+3: did not converge in 10 iterations 
+4: did not converge in 10 iterations 
+5: did not converge in 10 iterations 
+6: did not converge in 10 iterations 
+7: did not converge in 10 iterations 
+8: did not converge in 10 iterations 
+9: did not converge in 10 iterations 
+> plot(ratio_ss, type = "b", xlab = "k")
+> wineQuality
+[1] 6 5 7 8 4 3 9
+ wine_km<-kmeans(dataWhiteWine,4,nstart=25)
+  library("factoextra")
+> wine_km<-kmeans(dataWhiteWine,7,nstart=25)
+> fviz_cluster(wine_km, data = dataWhiteWine,ellipse.type = "convex",palette = "jco",ggtheme = theme_minimal())
+> q()
+> normalize <- function(x) {
++ return ((x - min(x)) / (max(x) - min(x)))
++ }
+
+> dataNorm <- as.data.frame(lapply(dataWhiteWine, normalize))
+> wine_km<-kmeans(dataNorm,7,nstart=25)
+Warning message:
+did not converge in 10 iterations 
+> fviz_cluster(wine_km, data = dataNorm,ellipse.type = "convex",palette = "jco",ggtheme = theme_minimal())
+> wine_km<-kmeans(dataNorm,4,nstart=20)
+> fviz_cluster(wine_km, data = dataNorm,ellipse.type = "convex",palette = "jco",ggtheme = theme_minimal())
+> clusters <- hclust(dist(dataNorm), method = 'average')
+> plot(clusters)
+> clusters <- hclust(dist(data,method='euclidean'), method = 'ward.D2')
+> plot(clusters)
